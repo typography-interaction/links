@@ -6,7 +6,7 @@ document.head.appendChild(markdownIt);
 
 
 const channel = 'typography-and-interaction-too'
-const url = `https://api.are.na/v2/channels/${channel}`
+const url = `https://api.are.na/v2/channels/${channel}?per=100`
 
 
 
