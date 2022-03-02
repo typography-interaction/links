@@ -8,7 +8,39 @@
 		<script src="assets/arena.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<h1 id="channel-title"></h1>
-		<div id="channel-description"></div>
+
+		<!-- The title and description will be inserted into these elements. -->
+		<h1 id="title"></h1>
+		<div id="description"></div>
+
+		<!-- The channel “blocks” will be created as children, here. -->
+		<section id="blocks">
+		</section>
+
+		<!-- These are the templates for the various block types. -->
+		<template id="audio">
+			<p>Audio!</p>
+		</template>
+
+		<template id="image">
+			<p>Image!</p>
+		</template>
+
+		<template id="link">
+			<p>Link!</p>
+		</template>
+
+		<template id="pdf">
+			<p>PDF!</p>
+		</template>
+
+		<template id="text">
+			<p>Text!</p>
+		</template>
+
+		<template id="video">
+			<p>Video!</p>
+		</template>
+
 	</body>
 </html>

@@ -12,25 +12,40 @@ const url = `https://api.are.na/v2/channels/${channel}?per=100`
 
 const constructElements = (data) => {
 	document.title = data.title
-	document.getElementById('channel-title').innerHTML = data.title
-	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
+	document.getElementById('title').innerHTML = data.title
+	document.getElementById('description').innerHTML = window.markdownit().render(data.metadata.description)
+
+	const container = document.getElementById('blocks')
+
+	const audio = document.getElementById('audio')
+	const image = document.getElementById('image')
+	const link  = document.getElementById('link')
+	const pdf   = document.getElementById('pdf')
+	const text  = document.getElementById('text')
+	const video = document.getElementById('video')
 
 	data.contents.slice().reverse().forEach((item) => {
 		switch (item.class) {
 			case 'Attachment':
 				let type = item.attachment.content_type
 				if (type.includes('audio')) {
+					container.append(audio.content.cloneNode(true));
 				}
 				else if (type.includes('pdf')) {
+					container.append(pdf.content.cloneNode(true));
 				}
 				else if (type.includes('video')) {
+					container.append(video.content.cloneNode(true));
 				}
 				break
 			case 'Image':
+				container.append(image.content.cloneNode(true));
 				break
 			case 'Link':
+				container.append(link.content.cloneNode(true));
 				break
 			case 'Text':
+				container.append(text.content.cloneNode(true));
 				break
 		}
 	})
