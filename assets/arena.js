@@ -1,3 +1,10 @@
+// The Description is returned as Markdown, of course.
+let markdownIt = document.createElement('script');
+markdownIt.src = 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.3.2/markdown-it.min.js';
+document.head.appendChild(markdownIt);
+
+
+
 const channel = 'typography-and-interaction-too'
 const url = `https://api.are.na/v2/channels/${channel}`
 
@@ -6,7 +13,7 @@ const url = `https://api.are.na/v2/channels/${channel}`
 const constructElements = (data) => {
 	document.title = data.title
 	document.getElementById('title').innerHTML = data.title
-	document.getElementById('description').innerHTML = data.metadata.description
+	document.getElementById('description').innerHTML = window.markdownit().render(data.metadata.description)
 
 	data.contents.slice().reverse().forEach((item) => {
 		switch (item.class) {
