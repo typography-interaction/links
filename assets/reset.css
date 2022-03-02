@@ -1,0 +1,45 @@
+/* Clear user-agent styles. */
+*:where(:not(audio, canvas, iframe, img, svg, video):not(svg *, symbol *)) {
+	all:     unset;
+	display: revert;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+a,
+button {
+	cursor: revert;
+}
+
+ol,
+ul,
+menu {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+textarea {
+	white-space: revert;
+}
+
+::placeholder {
+	all: unset;
+}
+
+
+
+/* Some sensible defaults. */
+audio,
+img,
+video {
+	display: block;
+	max-width: 100%;
+	width: 100%;
+}
