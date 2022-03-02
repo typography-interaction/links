@@ -12,8 +12,8 @@ const url = `https://api.are.na/v2/channels/${channel}`
 
 const constructElements = (data) => {
 	document.title = data.title
-	document.getElementById('title').innerHTML = data.title
-	document.getElementById('description').innerHTML = window.markdownit().render(data.metadata.description)
+	document.getElementById('channel-title').innerHTML = data.title
+	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
 	data.contents.slice().reverse().forEach((item) => {
 		switch (item.class) {
