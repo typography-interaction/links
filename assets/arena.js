@@ -4,7 +4,26 @@ const url = `https://api.are.na/v2/channels/${channel}`
 
 
 const constructElements = (data) => {
-	document.title = data.title;
+	document.title = data.title
+	data.contents.slice().reverse().forEach((item) => {
+		switch (item.class) {
+			case 'Attachment':
+				let type = item.attachment.content_type
+				if (type.includes('audio')) {
+				}
+				else if (type.includes('pdf')) {
+				}
+				else if (type.includes('video')) {
+				}
+				break
+			case 'Image':
+				break
+			case 'Link':
+				break
+			case 'Text':
+				break
+		}
+	})
 }
 
 
