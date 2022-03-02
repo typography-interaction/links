@@ -5,6 +5,9 @@ const url = `https://api.are.na/v2/channels/${channel}`
 
 const constructElements = (data) => {
 	document.title = data.title
+	document.getElementById('title').innerHTML = data.title
+	document.getElementById('description').innerHTML = data.metadata.description
+
 	data.contents.slice().reverse().forEach((item) => {
 		switch (item.class) {
 			case 'Attachment':
