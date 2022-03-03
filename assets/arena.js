@@ -24,10 +24,10 @@ const constructElements = (data) => {
 	const text  = document.getElementById('text')
 	const video = document.getElementById('video')
 
-	data.contents.slice().reverse().forEach((item) => {
-		switch (item.class) {
+	data.contents.slice().reverse().forEach((block) => {
+		switch (block.class) {
 			case 'Attachment':
-				let type = item.attachment.content_type
+				let type = block.attachment.content_type
 				if (type.includes('audio')) {
 					container.append(audio.content.cloneNode(true))
 				}
