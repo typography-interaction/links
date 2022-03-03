@@ -45,7 +45,17 @@ const constructElements = (data) => {
 				container.append(link.content.cloneNode(true))
 				break
 			case 'Text':
-				container.append(text.content.cloneNode(true))
+				let element = text.content.cloneNode(true)
+
+				let title = element.querySelector('.title')
+				let content = element.querySelector('.content')
+				let description = element.querySelector('.description')
+
+				if (title) block.title ? title.innerHTML = block.title : title.remove()
+				if (content) block.content_html ? content.innerHTML = block.content_html : content.remove()
+				if (description) block.description_html ? description.innerHTML = block.description_html : description.remove()
+
+				container.append(element)
 				break
 		}
 	})
