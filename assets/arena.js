@@ -63,7 +63,7 @@ const constructElements = (data) => {
 
 
 
-fetch(url)
+fetch(url, {cache: 'no-store'})
 	.then(response => response.json())
 	.then(data => {
 		constructElements(data)
