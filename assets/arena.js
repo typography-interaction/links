@@ -27,14 +27,14 @@ const constructElements = (data) => {
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
 			case 'Attachment':
-				let type = block.attachment.content_type
-				if (type.includes('audio')) {
+				let attachment = block.attachment.content_type
+				if (attachment.includes('audio')) {
 					container.append(audio.content.cloneNode(true))
 				}
-				else if (type.includes('pdf')) {
+				else if (attachment.includes('pdf')) {
 					container.append(pdf.content.cloneNode(true))
 				}
-				else if (type.includes('video')) {
+				else if (attachment.includes('video')) {
 					container.append(video.content.cloneNode(true))
 				}
 				break
@@ -50,10 +50,12 @@ const constructElements = (data) => {
 				let title = element.querySelector('.title')
 				let content = element.querySelector('.content')
 				let description = element.querySelector('.description')
+				let type = element.querySelector('.type')
 
 				if (title) block.title ? title.innerHTML = block.title : title.remove()
 				if (content) block.content_html ? content.innerHTML = block.content_html : content.remove()
 				if (description) block.description_html ? description.innerHTML = block.description_html : description.remove()
+				if (type) block.class ? type.innerHTML = block.class : type.remove()
 
 				container.append(element)
 				break
