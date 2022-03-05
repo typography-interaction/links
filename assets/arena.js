@@ -19,8 +19,11 @@ const setupBlocks = () => {
 
 	blocks.forEach((type) => {
 		let typeClass = type.replace(/[A-Z]/g, "-$&").toLowerCase()
-		// This is probably not the right way to do this.
+		let typeName = type.split(/[A-Z]/g)[0];
+		(typeName == 'pdf') ? typeName = typeName.toUpperCase() : typeName = typeName[0].toUpperCase() + typeName.slice(1)
+
 		window[type] = {
+			name: typeName,
 			container: document.querySelector(`.${typeClass}-blocks`),
 			template: document.getElementById(`${typeClass}-block`).content,
 		}
@@ -43,36 +46,36 @@ const parseBlocks = (data) => {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					renderBlock(audioFile)
+					renderBlock(block, audioFile)
 				}
 				else if (attachment.includes('pdf')) {
-					renderBlock(pdf)
+					renderBlock(block, pdf)
 				}
 				else if (attachment.includes('video')) {
-					renderBlock(videoFile)
+					renderBlock(block, videoFile)
 				}
 				break
 
 			case 'Image':
-				renderBlock(image)
+				renderBlock(block, image)
 				break
 
 			case 'Link':
-				renderBlock(link)
+				renderBlock(block, link)
 				break
 
 			case 'Media':
 				let media = block.embed.type
-					if (media.includes('rich')) {
-						renderBlock(audioEmbed)
-					}
-					else if (media.includes('video')) {
-						renderBlock(videoEmbed)
-					}
+				if (media.includes('rich')) {
+					renderBlock(block, audioEmbed)
+				}
+				else if (media.includes('video')) {
+					renderBlock(block, videoEmbed)
+				}
 				break
 
 			case 'Text':
-				renderBlock(text)
+				renderBlock(block, text)
 				break
 		}
 	})
@@ -80,8 +83,18 @@ const parseBlocks = (data) => {
 
 
 
-const renderBlock = (type) => {
-	type.container.append(type.template.cloneNode(true))
+const renderBlock = (block, type) => {
+	let template = type.template.cloneNode(true)
+
+	let titleElement = template.querySelector('.title')
+	let descriptionElement = template.querySelector('.description')
+	let typeElement = template.querySelector('.type')
+
+	if (titleElement) block.title ? titleElement.innerHTML = block.title : titleElement.remove()
+	if (descriptionElement) block.description_html ? descriptionElement.innerHTML = block.description_html : descriptionElement.remove()
+	if (typeElement) typeElement.innerHTML = type.name
+
+	type.container.append(template)
 }
 
 
