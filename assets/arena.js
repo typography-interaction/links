@@ -21,12 +21,13 @@ const constructElements = (data) => {
 		'videoFile',
 	]
 
-	blocks = Object.fromEntries(
-		blocks.map(type => [type, {
-			container: document.querySelector(`.${type.replace(/[A-Z]/g, "-$&").toLowerCase()}-blocks`),
-			template: document.getElementById(`${type.replace(/[A-Z]/g, "-$&").toLowerCase()}-block`),
-		}])
-	)
+	blocks.forEach((type) => {
+		let typeClass = type.replace(/[A-Z]/g, "-$&").toLowerCase()
+		window[type] = {
+			container: document.querySelector(`.${typeClass}-blocks`),
+			template: document.getElementById(`${typeClass}-block`).content,
+		}
+	})
 
 
 
@@ -35,36 +36,36 @@ const constructElements = (data) => {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					blocks.audioFile.container.append(blocks.audioFile.template.content.cloneNode(true))
+					audioFile.container.append(audioFile.template.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
-					blocks.pdf.container.append(blocks.pdf.template.content.cloneNode(true))
+					pdf.container.append(pdf.template.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					blocks.videoFile.container.append(blocks.videoFile.template.content.cloneNode(true))
+					videoFile.container.append(videoFile.template.cloneNode(true))
 				}
 				break
 
 			case 'Image':
-				blocks.image.container.append(blocks.image.template.content.cloneNode(true))
+				image.container.append(image.template.cloneNode(true))
 				break
 
 			case 'Link':
-				blocks.link.container.append(blocks.link.template.content.cloneNode(true))
+				link.container.append(link.template.cloneNode(true))
 				break
 
 			case 'Media':
 				let media = block.embed.type
 					if (media.includes('rich')) {
-						blocks.audioEmbed.container.append(blocks.audioEmbed.template.content.cloneNode(true))
+						audioEmbed.container.append(audioEmbed.template.cloneNode(true))
 					}
 					else if (media.includes('video')) {
-						blocks.videoEmbed.container.append(blocks.videoEmbed.template.content.cloneNode(true))
+						videoEmbed.container.append(videoEmbed.template.cloneNode(true))
 					}
 				break
 
 			case 'Text':
-				blocks.text.container.append(blocks.text.template.content.cloneNode(true))
+				text.container.append(text.template.cloneNode(true))
 				break
 		}
 	})
