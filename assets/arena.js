@@ -87,10 +87,14 @@ const renderBlock = (block, type) => {
 	let template = type.template.cloneNode(true)
 
 	let titleElement = template.querySelector('.title')
+	let imageElement = template.querySelector('.image')
+	let contentElement = template.querySelector('.content')
 	let descriptionElement = template.querySelector('.description')
 	let typeElement = template.querySelector('.type')
 
 	if (titleElement) block.title ? titleElement.innerHTML = block.title : titleElement.remove()
+	if (imageElement) block.image ? imageElement.src = block.image.original.url : imageElement.remove()
+	if (contentElement) block.content_html ? contentElement.innerHTML = block.content_html : contentElement.remove()
 	if (descriptionElement) block.description_html ? descriptionElement.innerHTML = block.description_html : descriptionElement.remove()
 	if (typeElement) typeElement.innerHTML = type.name
 

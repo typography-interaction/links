@@ -28,17 +28,21 @@
 
 
 		<!-- These are the templates for the various block types. -->
+		<!-- You can move/remove any of the insertion points! -->
+		<!-- For example, you could only have images for actual image blocks. -->
 		<template id="audio-embed-block"> <!-- Spotify, Soundcloud, etc. -->
-			<figure class="audio-embed"> <!-- You can use the container class to style a whole type. -->
+			<figure class="audio-embed"> <!-- You can use the container classes to style a whole type. -->
 				<h3 class="title"></h3> <!-- Block title inserts here. -->
+				<img class="image"> <!-- Image/cover image source inserts here. -->
 				<figcaption class="description"></figcaption> <!-- Block description inserts here. -->
-				<p class="type"></p> <!-- Block type inserts here. -->
+				<p class="type"></p> <!-- Block type name inserts here. -->
 			</figure>
 		</template>
 
 		<template id="audio-file-block"> <!-- Uploaded audio files. -->
 			<figure class="audio-file">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -47,6 +51,7 @@
 		<template id="image-block">
 			<figure class="image">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -56,6 +61,7 @@
 		<template id="link-block">
 			<figure class="link">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -64,6 +70,7 @@
 		<template id="pdf-block">
 			<figure class="pdf">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -72,6 +79,8 @@
 		<template id="text-block">
 			<figure class="text">
 				<h3 class="title"></h3>
+				<img class="image">
+				<div class="content"></div> <!-- Text blocks insert their HTML here. -->
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -80,6 +89,7 @@
 		<template id="video-embed-block"> <!-- YouTube, Vimeo, etc. -->
 			<figure class="video-embed">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
@@ -88,6 +98,7 @@
 		<template id="video-file-block"> <!-- Uploaded video files. -->
 			<figure class="video-file">
 				<h3 class="title"></h3>
+				<img class="image">
 				<figcaption class="description"></figcaption>
 				<p class="type"></p>
 			</figure>
