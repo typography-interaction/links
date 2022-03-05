@@ -12,12 +12,12 @@ const constructElements = (data) => {
 
 	const container = document.getElementById('blocks')
 
-	const audio = document.getElementById('audio')
-	const image = document.getElementById('image')
-	const link  = document.getElementById('link')
-	const pdf   = document.getElementById('pdf')
-	const text  = document.getElementById('text')
-	const video = document.getElementById('video')
+	const audio = document.getElementById('audio-block')
+	const image = document.getElementById('image-block')
+	const link  = document.getElementById('link-block')
+	const pdf   = document.getElementById('pdf-block')
+	const text  = document.getElementById('text-block')
+	const video = document.getElementById('video-block')
 
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
