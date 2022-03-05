@@ -10,45 +10,60 @@ const constructElements = (data) => {
 	document.getElementById('channel-title').innerHTML = data.title
 	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
-	const audioContainer = document.querySelector('.audio-blocks')
-	const imageContainer = document.querySelector('.image-blocks')
-	const embedContainer = document.querySelector('.embed-blocks')
-	const linkContainer  = document.querySelector('.link-blocks')
-	const pdfContainer   = document.querySelector('.pdf-blocks')
-	const textContainer  = document.querySelector('.text-blocks')
-	const videoContainer = document.querySelector('.video-blocks')
+	const audioEmbedContainer = document.querySelector('.audio-embed-blocks')
+	const audioFileContainer  = document.querySelector('.audio-file-blocks')
+	const imageContainer      = document.querySelector('.image-blocks')
+	const embedContainer      = document.querySelector('.embed-blocks')
+	const linkContainer       = document.querySelector('.link-blocks')
+	const pdfContainer        = document.querySelector('.pdf-blocks')
+	const textContainer       = document.querySelector('.text-blocks')
+	const videoEmbedContainer = document.querySelector('.video-embed-blocks')
+	const videoFileContainer  = document.querySelector('.video-file-blocks')
 
-	const audioBlock = document.getElementById('audio-block')
-	const imageBlock = document.getElementById('image-block')
-	const embedBlock = document.getElementById('embed-block')
-	const linkBlock  = document.getElementById('link-block')
-	const pdfBlock   = document.getElementById('pdf-block')
-	const textBlock  = document.getElementById('text-block')
-	const videoBlock = document.getElementById('video-block')
+	const audioEmbedBlock = document.getElementById('audio-embed-block')
+	const audioFileBlock  = document.getElementById('audio-file-block')
+	const imageBlock      = document.getElementById('image-block')
+	const embedBlock      = document.getElementById('embed-block')
+	const linkBlock       = document.getElementById('link-block')
+	const pdfBlock        = document.getElementById('pdf-block')
+	const textBlock       = document.getElementById('text-block')
+	const videoEmbedBlock = document.getElementById('video-embed-block')
+	const videoFileBlock  = document.getElementById('video-file-block')
 
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
+
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					audioContainer.append(audioBlock.content.cloneNode(true))
+					audioFileContainer.append(audioFileBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
 					pdfContainer.append(pdfBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					videoContainer.append(videoBlock.content.cloneNode(true))
+					videoFileContainer.append(videoFileBlock.content.cloneNode(true))
 				}
 				break
+
 			case 'Image':
 				imageContainer.append(imageBlock.content.cloneNode(true))
 				break
+
 			case 'Link':
 				linkContainer.append(linkBlock.content.cloneNode(true))
 				break
+
 			case 'Media':
-				embedContainer.append(embedBlock.content.cloneNode(true))
+				let media = block.embed.type
+					if (media.includes('rich')) {
+						audioEmbedContainer.append(audioEmbedBlock.content.cloneNode(true))
+					}
+					else if (media.includes('video')) {
+						videoEmbedContainer.append(videoEmbedBlock.content.cloneNode(true))
+					}
 				break
+
 			case 'Text':
 				textContainer.append(textBlock.content.cloneNode(true))
 				break

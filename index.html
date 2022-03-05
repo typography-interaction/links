@@ -19,24 +19,25 @@
 
 
 
-		<!-- The channel “blocks” will be created as children, here. -->
-		<section class="audio-blocks image-blocks embed-blocks link-blocks pdf-blocks text-blocks video-blocks"></section>
-		<!-- You can move the different classes to different elements to separate the types! -->
+		<!-- All the channel “blocks” will be created as children, here. -->
+		<section class="audio-embed-blocks audio-file-blocks image-blocks embed-blocks link-blocks pdf-blocks text-blocks video-embed-blocks video-file-blocks"></section>
+		<!-- You can move the classes to different elements to separate the types! -->
 
 
 
 		<!-- These are the templates for the various block types. -->
-		<template id="audio-block">
-			<p>Audio!</p>
+		<template id="audio-embed-block"> <!-- Spotify, etc. -->
+			<p>Audio embed!</p>
+		</template>
+
+		<template id="audio-file-block"> <!-- Uploaded audio files. -->
+			<p>Audio file!</p>
 		</template>
 
 		<template id="image-block">
 			<p>Image!</p>
 		</template>
 
-		<template id="embed-block">
-			<p>Embed!</p>
-		</template>
 
 		<template id="link-block">
 			<p>Link!</p>
@@ -50,8 +51,12 @@
 			<p>Text!</p>
 		</template>
 
-		<template id="video-block">
-			<p>Video!</p>
+		<template id="video-embed-block"> <!-- YouTube, etc. -->
+			<p>Video embed!</p>
+		</template>
+
+		<template id="video-file-block"> <!-- Uploaded video files. -->
+			<p>Video file!</p>
 		</template>
 
 	</body>
