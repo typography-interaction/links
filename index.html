@@ -18,10 +18,10 @@
 
 
 		<!-- All the channel “blocks” will be created as children, here. -->
+		<!-- You could move the classes to different section elements to separate the types! -->
 		<section class="audio-embed-blocks audio-file-blocks image-blocks embed-blocks link-blocks pdf-blocks text-blocks video-embed-blocks video-file-blocks">
 			<h2>Blocks</h2>
 		</section>
-		<!-- You could move the blocks classes to different section elements to separate the types! -->
 
 
 
@@ -29,16 +29,18 @@
 		<!-- You can move/nest/remove any of the insertion points! -->
 		<!-- For example, you could only have images for actual image blocks. -->
 
-		<template id="audio-embed-block"> <!-- Spotify, Soundcloud, etc. -->
+ 		<!-- Spotify, Soundcloud, etc. -->
+		<template id="audio-embed-block">
 			<figure class="audio-embed"> <!-- You can use the container classes to style a whole type. -->
 				<h3 class="title"></h3> <!-- Block title inserts here. -->
 				<img class="image"> <!-- Image/cover image source inserts here. -->
 				<figcaption class="description"></figcaption> <!-- Block description inserts here. -->
-				<p class="type"></p> <!-- Block type name inserts here. -->
+				<p class="type"></p> <!-- Block type/kind inserts here. -->
 			</figure>
 		</template>
 
-		<template id="audio-file-block"> <!-- Uploaded audio files. -->
+ 		<!-- Uploaded audio files. -->
+		<template id="audio-file-block">
 			<figure class="audio-file-block">
 				<h3 class="title"></h3>
 				<img class="image">
@@ -55,7 +57,6 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
 
 		<template id="link-block">
 			<figure class="link-block">
@@ -84,7 +85,8 @@
 			</figure>
 		</template>
 
-		<template id="video-embed-block"> <!-- YouTube, Vimeo, etc. -->
+		<!-- YouTube, Vimeo, etc. -->
+		<template id="video-embed-block">
 			<figure class="video-embed-block">
 				<h3 class="title"></h3>
 				<img class="image">
@@ -93,7 +95,8 @@
 			</figure>
 		</template>
 
-		<template id="video-file-block"> <!-- Uploaded video files. -->
+		<!-- Uploaded video files. -->
+		<template id="video-file-block">
 			<figure class="video-file-block">
 				<h3 class="title"></h3>
 				<img class="image">
@@ -101,6 +104,8 @@
 				<p class="type"></p>
 			</figure>
 		</template>
+
+
 
 	</body>
 </html>
