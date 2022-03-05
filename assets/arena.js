@@ -10,62 +10,61 @@ const constructElements = (data) => {
 	document.getElementById('channel-title').innerHTML = data.title
 	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
-	const audioEmbedContainer = document.querySelector('.audio-embed-blocks')
-	const audioFileContainer  = document.querySelector('.audio-file-blocks')
-	const imageContainer      = document.querySelector('.image-blocks')
-	const embedContainer      = document.querySelector('.embed-blocks')
-	const linkContainer       = document.querySelector('.link-blocks')
-	const pdfContainer        = document.querySelector('.pdf-blocks')
-	const textContainer       = document.querySelector('.text-blocks')
-	const videoEmbedContainer = document.querySelector('.video-embed-blocks')
-	const videoFileContainer  = document.querySelector('.video-file-blocks')
+	let blocks = [
+		'audioEmbed',
+		'audioFile',
+		'image',
+		'link',
+		'pdf',
+		'text',
+		'videoEmbed',
+		'videoFile',
+	]
 
-	const audioEmbedTemplate = document.getElementById('audio-embed-block')
-	const audioFileTemplate  = document.getElementById('audio-file-block')
-	const imageTemplate      = document.getElementById('image-block')
-	const embedTemplate      = document.getElementById('embed-block')
-	const linkTemplate       = document.getElementById('link-block')
-	const pdfTemplate        = document.getElementById('pdf-block')
-	const textTemplate       = document.getElementById('text-block')
-	const videoEmbedTemplate = document.getElementById('video-embed-block')
-	const videoFileTemplate  = document.getElementById('video-file-block')
+	blocks = Object.fromEntries(
+		blocks.map(type => [type, {
+			container: document.querySelector(`.${type.replace(/[A-Z]/g, "-$&").toLowerCase()}-blocks`),
+			template: document.getElementById(`${type.replace(/[A-Z]/g, "-$&").toLowerCase()}-block`),
+		}])
+	)
+
+
 
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
-
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					audioFileContainer.append(audioFileTemplate.content.cloneNode(true))
+					blocks.audioFile.container.append(blocks.audioFile.template.content.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
-					pdfContainer.append(pdfTemplate.content.cloneNode(true))
+					blocks.pdf.container.append(blocks.pdf.template.content.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					videoFileContainer.append(videoFileTemplate.content.cloneNode(true))
+					blocks.videoFile.container.append(blocks.videoFile.template.content.cloneNode(true))
 				}
 				break
 
 			case 'Image':
-				imageContainer.append(imageTemplate.content.cloneNode(true))
+				blocks.image.container.append(blocks.image.template.content.cloneNode(true))
 				break
 
 			case 'Link':
-				linkContainer.append(linkTemplate.content.cloneNode(true))
+				blocks.link.container.append(blocks.link.template.content.cloneNode(true))
 				break
 
 			case 'Media':
 				let media = block.embed.type
 					if (media.includes('rich')) {
-						audioEmbedContainer.append(audioEmbedTemplate.content.cloneNode(true))
+						blocks.audioEmbed.container.append(blocks.audioEmbed.template.content.cloneNode(true))
 					}
 					else if (media.includes('video')) {
-						videoEmbedContainer.append(videoEmbedTemplate.content.cloneNode(true))
+						blocks.videoEmbed.container.append(blocks.videoEmbed.template.content.cloneNode(true))
 					}
 				break
 
 			case 'Text':
-				textContainer.append(textTemplate.content.cloneNode(true))
+				blocks.text.container.append(blocks.text.template.content.cloneNode(true))
 				break
 		}
 	})
