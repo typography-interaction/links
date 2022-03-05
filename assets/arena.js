@@ -22,10 +22,13 @@ const setupBlocks = () => {
 		let typeName = type.split(/[A-Z]/g)[0];
 		(typeName == 'pdf') ? typeName = typeName.toUpperCase() : typeName = typeName[0].toUpperCase() + typeName.slice(1)
 
+		let typeContainer = document.querySelector(`.${typeClass}-blocks`)
+		let typeTemplate = document.getElementById(`${typeClass}-block`)
+
 		window[type] = {
 			name: typeName,
-			container: document.querySelector(`.${typeClass}-blocks`),
-			template: document.getElementById(`${typeClass}-block`).content,
+			container: typeContainer,
+			template: typeTemplate ? typeTemplate.content : null,
 		}
 	})
 }
@@ -84,6 +87,8 @@ const parseBlocks = (data) => {
 
 
 const renderBlock = (block, type) => {
+	if (!type.template || !type.container) return
+
 	let template = type.template.cloneNode(true)
 
 	let titleElement = template.querySelector('.title')
