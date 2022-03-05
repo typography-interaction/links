@@ -20,15 +20,15 @@ const constructElements = (data) => {
 	const videoEmbedContainer = document.querySelector('.video-embed-blocks')
 	const videoFileContainer  = document.querySelector('.video-file-blocks')
 
-	const audioEmbedBlock = document.getElementById('audio-embed-block')
-	const audioFileBlock  = document.getElementById('audio-file-block')
-	const imageBlock      = document.getElementById('image-block')
-	const embedBlock      = document.getElementById('embed-block')
-	const linkBlock       = document.getElementById('link-block')
-	const pdfBlock        = document.getElementById('pdf-block')
-	const textBlock       = document.getElementById('text-block')
-	const videoEmbedBlock = document.getElementById('video-embed-block')
-	const videoFileBlock  = document.getElementById('video-file-block')
+	const audioEmbedTemplate = document.getElementById('audio-embed-block')
+	const audioFileTemplate  = document.getElementById('audio-file-block')
+	const imageTemplate      = document.getElementById('image-block')
+	const embedTemplate      = document.getElementById('embed-block')
+	const linkTemplate       = document.getElementById('link-block')
+	const pdfTemplate        = document.getElementById('pdf-block')
+	const textTemplate       = document.getElementById('text-block')
+	const videoEmbedTemplate = document.getElementById('video-embed-block')
+	const videoFileTemplate  = document.getElementById('video-file-block')
 
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
@@ -36,36 +36,36 @@ const constructElements = (data) => {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					audioFileContainer.append(audioFileBlock.content.cloneNode(true))
+					audioFileContainer.append(audioFileTemplate.content.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
-					pdfContainer.append(pdfBlock.content.cloneNode(true))
+					pdfContainer.append(pdfTemplate.content.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					videoFileContainer.append(videoFileBlock.content.cloneNode(true))
+					videoFileContainer.append(videoFileTemplate.content.cloneNode(true))
 				}
 				break
 
 			case 'Image':
-				imageContainer.append(imageBlock.content.cloneNode(true))
+				imageContainer.append(imageTemplate.content.cloneNode(true))
 				break
 
 			case 'Link':
-				linkContainer.append(linkBlock.content.cloneNode(true))
+				linkContainer.append(linkTemplate.content.cloneNode(true))
 				break
 
 			case 'Media':
 				let media = block.embed.type
 					if (media.includes('rich')) {
-						audioEmbedContainer.append(audioEmbedBlock.content.cloneNode(true))
+						audioEmbedContainer.append(audioEmbedTemplate.content.cloneNode(true))
 					}
 					else if (media.includes('video')) {
-						videoEmbedContainer.append(videoEmbedBlock.content.cloneNode(true))
+						videoEmbedContainer.append(videoEmbedTemplate.content.cloneNode(true))
 					}
 				break
 
 			case 'Text':
-				textContainer.append(textBlock.content.cloneNode(true))
+				textContainer.append(textTemplate.content.cloneNode(true))
 				break
 		}
 	})
