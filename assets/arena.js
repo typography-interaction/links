@@ -93,12 +93,14 @@ const renderBlock = (block, type) => {
 
 	let titleElement = template.querySelector('.title')
 	let imageElement = template.querySelector('.image')
+	let embedElement = template.querySelector('.embed')
 	let contentElement = template.querySelector('.content')
 	let descriptionElement = template.querySelector('.description')
 	let typeElement = template.querySelector('.type')
 
 	if (titleElement) block.title ? titleElement.innerHTML = block.title : titleElement.remove()
 	if (imageElement) block.image ? imageElement.src = block.image.large.url : imageElement.remove()
+	if (embedElement) block.embed ? embedElement.innerHTML = block.embed.html : embedElement.remove()
 	if (contentElement) block.content_html ? contentElement.innerHTML = block.content_html : contentElement.remove()
 	if (descriptionElement) block.description_html ? descriptionElement.innerHTML = block.description_html : descriptionElement.remove()
 	if (typeElement) typeElement.innerHTML = type.name
