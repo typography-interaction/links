@@ -65,8 +65,10 @@ const constructElements = (data) => {
 
 
 
-fetch(url, {cache: 'no-store'})
-	.then(response => response.json())
-	.then(data => {
-		constructElements(data)
-	})
+window.addEventListener('DOMContentLoaded', () => {
+	fetch(url, {cache: 'no-store'})
+		.then(response => response.json())
+		.then(data => {
+			constructElements(data)
+		})
+});
