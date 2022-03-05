@@ -12,35 +12,35 @@ const constructElements = (data) => {
 
 	const container = document.getElementById('blocks')
 
-	const audio = document.getElementById('audio-block')
-	const image = document.getElementById('image-block')
-	const link  = document.getElementById('link-block')
-	const pdf   = document.getElementById('pdf-block')
-	const text  = document.getElementById('text-block')
-	const video = document.getElementById('video-block')
+	const audioBlock = document.getElementById('audio-block')
+	const imageBlock = document.getElementById('image-block')
+	const linkBlock  = document.getElementById('link-block')
+	const pdfBlock   = document.getElementById('pdf-block')
+	const textBlock  = document.getElementById('text-block')
+	const videoBlock = document.getElementById('video-block')
 
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					container.append(audio.content.cloneNode(true))
+					container.append(audioBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
-					container.append(pdf.content.cloneNode(true))
+					container.append(pdfBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					container.append(video.content.cloneNode(true))
+					container.append(videoBlock.content.cloneNode(true))
 				}
 				break
 			case 'Image':
-				container.append(image.content.cloneNode(true))
+				container.append(imageBlock.content.cloneNode(true))
 				break
 			case 'Link':
-				container.append(link.content.cloneNode(true))
+				container.append(linkBlock.content.cloneNode(true))
 				break
 			case 'Text':
-				let element = text.content.cloneNode(true)
+				let element = textBlock.content.cloneNode(true)
 
 				let title = element.querySelector('.title')
 				let content = element.querySelector('.content')
