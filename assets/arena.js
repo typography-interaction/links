@@ -10,10 +10,17 @@ const constructElements = (data) => {
 	document.getElementById('channel-title').innerHTML = data.title
 	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
-	const container = document.getElementById('blocks')
+	const audioContainer = document.querySelector('.audio-blocks')
+	const imageContainer = document.querySelector('.image-blocks')
+	const embedContainer = document.querySelector('.embed-blocks')
+	const linkContainer  = document.querySelector('.link-blocks')
+	const pdfContainer   = document.querySelector('.pdf-blocks')
+	const textContainer  = document.querySelector('.text-blocks')
+	const videoContainer = document.querySelector('.video-blocks')
 
 	const audioBlock = document.getElementById('audio-block')
 	const imageBlock = document.getElementById('image-block')
+	const embedBlock = document.getElementById('embed-block')
 	const linkBlock  = document.getElementById('link-block')
 	const pdfBlock   = document.getElementById('pdf-block')
 	const textBlock  = document.getElementById('text-block')
@@ -24,35 +31,26 @@ const constructElements = (data) => {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					container.append(audioBlock.content.cloneNode(true))
+					audioContainer.append(audioBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('pdf')) {
-					container.append(pdfBlock.content.cloneNode(true))
+					pdfContainer.append(pdfBlock.content.cloneNode(true))
 				}
 				else if (attachment.includes('video')) {
-					container.append(videoBlock.content.cloneNode(true))
+					videoContainer.append(videoBlock.content.cloneNode(true))
 				}
 				break
 			case 'Image':
-				container.append(imageBlock.content.cloneNode(true))
+				imageContainer.append(imageBlock.content.cloneNode(true))
 				break
 			case 'Link':
-				container.append(linkBlock.content.cloneNode(true))
+				linkContainer.append(linkBlock.content.cloneNode(true))
+				break
+			case 'Media':
+				embedContainer.append(embedBlock.content.cloneNode(true))
 				break
 			case 'Text':
-				let element = textBlock.content.cloneNode(true)
-
-				let title = element.querySelector('.title')
-				let content = element.querySelector('.content')
-				let description = element.querySelector('.description')
-				let type = element.querySelector('.type')
-
-				if (title) block.title ? title.innerHTML = block.title : title.remove()
-				if (content) block.content_html ? content.innerHTML = block.content_html : content.remove()
-				if (description) block.description_html ? description.innerHTML = block.description_html : description.remove()
-				if (type) block.class ? type.innerHTML = block.class : type.remove()
-
-				container.append(element)
+				textContainer.append(textBlock.content.cloneNode(true))
 				break
 		}
 	})
