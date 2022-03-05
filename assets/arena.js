@@ -5,11 +5,7 @@ document.head.appendChild(markdownIt)
 
 
 
-const constructElements = (data) => {
-	document.title = data.title
-	document.getElementById('channel-title').innerHTML = data.title
-	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
-
+const setupBlocks = () => {
 	let blocks = [
 		'audioEmbed',
 		'audioFile',
@@ -28,6 +24,14 @@ const constructElements = (data) => {
 			template: document.getElementById(`${typeClass}-block`).content,
 		}
 	})
+}
+
+
+
+const constructElements = (data) => {
+	document.title = data.title
+	document.getElementById('channel-title').innerHTML = data.title
+	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
 
 
@@ -75,6 +79,8 @@ const constructElements = (data) => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const channel = document.getElementById('channel-url').href.split('/').filter(Boolean).pop()
+
+	setupBlocks()
 
 	fetch(`https://api.are.na/v2/channels/${channel}?per=100`, {cache: 'no-store'})
 		.then(response => response.json())
