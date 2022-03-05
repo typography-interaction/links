@@ -5,15 +5,10 @@ document.head.appendChild(markdownIt)
 
 
 
-const channel = 'typography-and-interaction-too'
-const url = `https://api.are.na/v2/channels/${channel}?per=100`
-
-
-
 const constructElements = (data) => {
 	document.title = data.title
-	document.getElementById('title').innerHTML = data.title
-	document.getElementById('description').innerHTML = window.markdownit().render(data.metadata.description)
+	document.getElementById('channel-title').innerHTML = data.title
+	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
 
 	const container = document.getElementById('blocks')
 
@@ -66,7 +61,9 @@ const constructElements = (data) => {
 
 
 window.addEventListener('DOMContentLoaded', () => {
-	fetch(url, {cache: 'no-store'})
+	const channel = document.getElementById('channel-url').href.split('/').filter(Boolean).pop()
+
+	fetch(`https://api.are.na/v2/channels/${channel}?per=100`, {cache: 'no-store'})
 		.then(response => response.json())
 		.then(data => {
 			constructElements(data)
