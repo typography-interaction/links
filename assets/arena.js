@@ -96,6 +96,8 @@ const renderBlock = (block, type) => {
 	let embedElement = template.querySelector('.embed')
 	let audioElement = template.querySelector('.audio')
 	let videoElement = template.querySelector('.video')
+	let linkElement = template.querySelector('.link')
+	let linkTitleElement = template.querySelector('.link-title')
 	let contentElement = template.querySelector('.content')
 	let descriptionElement = template.querySelector('.description')
 	let typeElement = template.querySelector('.type')
@@ -105,6 +107,8 @@ const renderBlock = (block, type) => {
 	if (embedElement) block.embed ? embedElement.innerHTML = block.embed.html : embedElement.remove()
 	if (audioElement) block.attachment ? audioElement.src = block.attachment.url : audioElement.remove()
 	if (videoElement) block.attachment ? videoElement.src = block.attachment.url : videoElement.remove()
+	if (linkElement) block.source ? linkElement.href = block.source.url : linkElement.remove()
+	if (linkTitleElement) block.source ? linkTitleElement.innerHTML = block.source.title : linkTitleElement.remove()
 	if (contentElement) block.content_html ? contentElement.innerHTML = block.content_html : contentElement.remove()
 	if (descriptionElement) block.description_html ? descriptionElement.innerHTML = block.description_html : descriptionElement.remove()
 	if (typeElement) typeElement.innerHTML = type.name

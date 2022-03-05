@@ -1,0 +1,23 @@
+/* These styles are just to make it easier to see the blocks, initially. */
+
+body {
+	font-family: monospace;
+	padding: 40px;
+}
+
+a {
+	color: royalblue;
+}
+
+section,
+figure {
+	margin-top: 80px;
+	max-width: 600px;
+}
+
+figure *:not(:first-child) {
+	display: block;
+	margin-top: 1em;
+}
+
+/* Clear them out once you’ve got your channel plugged in! */
