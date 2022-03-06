@@ -15,7 +15,10 @@ figure {
 	max-width: 600px;
 }
 
-figure *:not(:first-child) {
+#channel-description > *,
+figure > *:not(:first-child),
+.description > *:not(:first-child),
+.content > *:not(:first-child) {
 	display: block;
 	margin-top: 1em;
 }
