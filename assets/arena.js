@@ -89,40 +89,45 @@ const renderBlock = (block, type) => {
 	if (!type.template || !type.container) return
 
 	let template = type.template.cloneNode(true)
+	let element = [
+		'title',
+		'image',
+		'embed',
+		'audio',
+		'video',
+		'link',
+		'linkTitle',
+		'content',
+		'description',
+		'type',
+	]
 
-	let titleElement = template.querySelector('.title')
-	let imageElement = template.querySelector('.image')
-	let embedElement = template.querySelector('.embed')
-	let audioElement = template.querySelector('.audio')
-	let videoElement = template.querySelector('.video')
-	let linkElement = template.querySelector('.link')
-	let linkTitleElement = template.querySelector('.link-title')
-	let contentElement = template.querySelector('.content')
-	let descriptionElement = template.querySelector('.description')
-	let typeElement = template.querySelector('.type')
+	element = element.reduce((previous, current) => ({ ...previous,
+		[current]: template.querySelector(`.${current.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
+	}), {})
 
-	if (titleElement) block.title ? titleElement.innerHTML = block.title : titleElement.remove()
-	if (imageElement) block.image ? imageElement.src = block.image.large.url : imageElement.remove()
-	if (embedElement) block.embed ? embedElement.innerHTML = block.embed.html : embedElement.remove()
-	if (audioElement) block.attachment ? audioElement.src = block.attachment.url : audioElement.remove()
-	if (videoElement) block.attachment ? videoElement.src = block.attachment.url : videoElement.remove()
-	if (linkElement) {
+	if (element.title) block.title ? element.title.innerHTML = block.title : element.title.remove()
+	if (element.image) block.image ? element.image.src = block.image.large.url : element.image.remove()
+	if (element.embed) block.embed ? element.embed.innerHTML = block.embed.html : element.embed.remove()
+	if (element.audio) block.attachment ? element.audio.src = block.attachment.url : element.audio.remove()
+	if (element.video) block.attachment ? element.video.src = block.attachment.url : element.video.remove()
+	if (element.link) {
 		if (block.source) {
-			linkElement.href = block.source.url
-			if (linkTitleElement) linkTitleElement.innerHTML = block.source.title
+			element.link.href = block.source.url
+			if (element.linkTitle) element.linkTitle.innerHTML = block.source.title
 		}
 		else if (block.attachment) {
-			linkElement.href = block.attachment.url
-			if (linkTitleElement) linkTitleElement.innerHTML = block.title
+			element.link.href = block.attachment.url
+			if (element.linkTitle) element.linkTitle.innerHTML = block.title
 		}
 		else {
-			linkElement.remove()
-			linkTitleElement.remove()
+			element.link.remove()
+			element.linkTitle.remove()
 		}
 	}
-	if (contentElement) block.content_html ? contentElement.innerHTML = block.content_html : contentElement.remove()
-	if (descriptionElement) block.description_html ? descriptionElement.innerHTML = block.description_html : descriptionElement.remove()
-	if (typeElement) typeElement.innerHTML = type.name
+	if (element.content) block.content_html ? element.content.innerHTML = block.content_html : element.content.remove()
+	if (element.description) block.description_html ? element.description.innerHTML = block.description_html : element.description.remove()
+	if (element.type) element.type.innerHTML = type.name
 
 	type.container.append(template)
 }
