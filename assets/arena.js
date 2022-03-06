@@ -102,9 +102,11 @@ const renderBlock = (block, type) => {
 		'type',
 	]
 
-	element = element.reduce((previous, current) => ({ ...previous,
-		[current]: template.querySelector(`.${current.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
-	}), {})
+	element = Object.assign({},
+		...element.map(type => ({
+			[type]: template.querySelector(`.${type.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
+		}))
+	)
 
 	if (element.title) block.title ? element.title.innerHTML = block.title : element.title.remove()
 	if (element.image) block.image ? element.image.src = block.image.large.url : element.image.remove()
