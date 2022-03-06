@@ -5,7 +5,18 @@ document.head.appendChild(markdownIt)
 
 
 
-const setupBlocks = () => {
+const setBasics = (data) => {
+	document.title = data.title
+	document.getElementById('channel-title').innerHTML = data.title
+	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
+
+	// Add author/collaborators with image/links.
+	// Error proof these.
+}
+
+
+
+const parseBlocks = (data) => {
 	let blocks = [
 		'audioEmbed',
 		'audioFile',
@@ -25,60 +36,48 @@ const setupBlocks = () => {
 		let typeContainer = document.querySelector(`.${typeClass}-blocks`)
 		let typeTemplate = document.getElementById(`${typeClass}-block`)
 
-		window[type] = {
+		blocks[type] = {
 			name: typeName,
 			container: typeContainer,
 			template: typeTemplate ? typeTemplate.content : null,
 		}
 	})
-}
 
-
-
-const setBasics = (data) => {
-	document.title = data.title
-	document.getElementById('channel-title').innerHTML = data.title
-	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
-}
-
-
-
-const parseBlocks = (data) => {
 	data.contents.slice().reverse().forEach((block) => {
 		switch (block.class) {
 			case 'Attachment':
 				let attachment = block.attachment.content_type
 				if (attachment.includes('audio')) {
-					renderBlock(block, audioFile)
+					renderBlock(block, blocks.audioFile)
 				}
 				else if (attachment.includes('pdf')) {
-					renderBlock(block, pdf)
+					renderBlock(block, blocks.pdf)
 				}
 				else if (attachment.includes('video')) {
-					renderBlock(block, videoFile)
+					renderBlock(block, blocks.videoFile)
 				}
 				break
 
 			case 'Image':
-				renderBlock(block, image)
+				renderBlock(block, blocks.image)
 				break
 
 			case 'Link':
-				renderBlock(block, link)
+				renderBlock(block, blocks.link)
 				break
 
 			case 'Media':
 				let media = block.embed.type
 				if (media.includes('rich')) {
-					renderBlock(block, audioEmbed)
+					renderBlock(block, blocks.audioEmbed)
 				}
 				else if (media.includes('video')) {
-					renderBlock(block, videoEmbed)
+					renderBlock(block, blocks.videoEmbed)
 				}
 				break
 
 			case 'Text':
-				renderBlock(block, text)
+				renderBlock(block, blocks.text)
 				break
 		}
 	})
@@ -132,8 +131,6 @@ const renderBlock = (block, type) => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const channel = document.getElementById('channel-url').href.split('/').filter(Boolean).pop()
-
-	setupBlocks()
 
 	fetch(`https://api.are.na/v2/channels/${channel}?per=100`, {cache: 'no-store'})
 		.then(response => response.json())
