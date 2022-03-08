@@ -9,6 +9,10 @@ a {
 	color: royalblue;
 }
 
+h1, h2, h3 {
+	font-size: 200%;
+}
+
 section,
 figure {
 	margin-top: 80px;
