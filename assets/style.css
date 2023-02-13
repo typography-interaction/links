@@ -1,30 +1,9 @@
 /* These styles are just to make it easier to see the blocks, initially. */
-
-body {
-	font-family: monospace;
-	padding: 40px;
-}
-
-a {
-	color: royalblue;
-}
-
-h1, h2, h3 {
-	font-size: 200%;
-}
-
-section,
-figure {
-	margin-top: 80px;
-	max-width: 600px;
-}
-
-#channel-description > *,
-figure > *:not(:first-child),
-.description > *:not(:first-child),
-.content > *:not(:first-child) {
-	display: block;
-	margin-top: 1em;
-}
-
 /* Clear them out once you’ve got your channel plugged in! */
+
+body { padding: 2em; }
+
+a { color: blue; }
+
+section { max-width: 40em; }
+
