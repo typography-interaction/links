@@ -1,13 +1,16 @@
-/* Clear user-agent styles. */
-*:where(:not(audio, canvas, iframe, img, svg, video):not(svg *, symbol *)) {
-	all:     unset;
+html *:where(:not(audio, canvas, iframe, img, svg, video):not(svg *, symbol *)) {
+	all: unset;
 	display: revert;
 }
 
-*,
-*::before,
-*::after {
+html *,
+html *::before,
+html *::after {
 	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
 }
 
 a,
@@ -15,10 +18,15 @@ button {
 	cursor: revert;
 }
 
+details summary,
+menu,
 ol,
-ul,
-menu {
+ul {
 	list-style: none;
+}
+
+img {
+	max-width: 100%;
 }
 
 table {
@@ -33,22 +41,14 @@ textarea {
 	all: unset;
 }
 
-
-
-/* Some sensible defaults. */
-em {
-	font-style: italic;
-}
-
-strong {
-	font-weight: bold;
-}
-
-audio,
-img,
-video,
 iframe {
-	display: block;
-	max-width: 100%;
-	width: 100%;
+	border: unset;
+}
+
+
+
+/* Disclosure triangles. */
+details ::marker,
+details ::-webkit-details-marker {
+	display: none;
 }
