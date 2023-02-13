@@ -8,28 +8,24 @@
 		<script src="assets/arena.js"></script>
 	</head>
 	<body>
-
-		<!-- Replace this URL with your channel to connect the API! -->
-		<a href="https://www.are.na/michael-fehrenbach/typography-and-interaction-too" id="channel-url">
-			<h1 id="channel-title"></h1> <!-- The channel title will be inserted inside this h1. -->
-		</a>
-		<div id="channel-description"></div> <!-- Same here for the channel description. -->
-
-
-
-		<!-- All the channel “blocks” will be created as children, here. -->
-		<!-- You could move the classes to different section elements to separate the types! -->
-		<section class="audio-embed-blocks audio-file-blocks image-blocks embed-blocks link-blocks pdf-blocks text-blocks video-embed-blocks video-file-blocks">
-			<h2>Blocks</h2>
+		<section>
+			<!-- Replace this URL with your channel to connect the API! -->
+			<a href="https://www.are.na/michael-fehrenbach/typography-and-interaction-too" id="channel-url">
+				<h1 id="channel-title"></h1> <!-- The channel title will be inserted inside this h1. -->
+			</a>
+			<div id="channel-description"></div> <!-- Same here for the channel description. -->
 		</section>
-
-
-
+		<section>
+			<h2>Blocks</h2>
+			<!-- All the channel “blocks” will be created as children, here. -->
+			<!-- You could move the classes to different section elements to separate the types! -->
+			<ul class="audio-embed-blocks audio-file-blocks image-blocks embed-blocks link-blocks pdf-blocks text-blocks video-embed-blocks video-file-blocks">
+			</ul>
+		</section>
 		<!-- These are the templates for the various block types, below. -->
 		<!-- You can move/nest/remove any of the insertion points! -->
 		<!-- For example, you could only show images for actual image blocks. -->
 		<!-- You could not show the type if you group them by section, above. -->
-
  		<!-- Spotify, Soundcloud, etc. -->
 		<template id="audio-embed-block">
 			<figure class="audio-embed"> <!-- You can use the container classes to style a whole type. -->
@@ -43,7 +39,6 @@
 				<p class="type"></p> <!-- Block type/kind inserts here. -->
 			</figure>
 		</template>
-
  		<!-- Uploaded audio files. -->
 		<template id="audio-file-block">
 			<figure class="audio-file-block">
@@ -54,7 +49,7 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
+		<!-- Images. -->
 		<template id="image-block">
 			<figure class="image-block">
 				<h3 class="title"></h3>
@@ -66,7 +61,7 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
+		<!-- Links (saved sites). -->
 		<template id="link-block">
 			<figure class="link-block">
 				<h3 class="title"></h3>
@@ -78,7 +73,7 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
+		<!-- Did anyone add PDFs? -->
 		<template id="pdf-block">
 			<figure class="pdf-block">
 				<h3 class="title"></h3>
@@ -90,7 +85,7 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
+		<!-- Text. -->
 		<template id="text-block">
 			<figure class="text-block">
 				<h3 class="title"></h3>
@@ -99,7 +94,6 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
 		<!-- YouTube, Vimeo, etc. -->
 		<template id="video-embed-block">
 			<figure class="video-embed-block">
@@ -113,7 +107,6 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
 		<!-- Uploaded video files. -->
 		<template id="video-file-block">
 			<figure class="video-file-block">
@@ -124,8 +117,5 @@
 				<p class="type"></p>
 			</figure>
 		</template>
-
-
-
 	</body>
 </html>
