@@ -1,5 +1,5 @@
 html *:where(:not(audio, canvas, iframe, img, svg, video):not(svg *, symbol *)) {
-	all: unset;
+	all:     unset;
 	display: revert;
 }
 
@@ -25,7 +25,9 @@ ul {
 	list-style: none;
 }
 
-img {
+audio,
+img,
+video {
 	max-width: 100%;
 }
 
