@@ -1,9 +1,19 @@
 /* These styles are just to make it easier to see the blocks, initially. */
-/* Clear them out once you’ve got your channel plugged in! */
 
 body { padding: 2em; }
 
 a { color: blue; }
+em { font-style: italic; }
+strong { font-weight: bold; }
 
 section { max-width: 40em; }
 
+body,
+section,
+ul,
+figure {
+	display: grid;
+	gap: 1em;
+}
+
+/* Clear them out once you’ve got your channel plugged in! */
