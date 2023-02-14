@@ -1,6 +1,6 @@
 // The Description is returned as Markdown, of course.
 let markdownIt = document.createElement('script')
-markdownIt.src = 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.3.2/markdown-it.min.js';
+markdownIt.src = 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.3.2/markdown-it.min.js'
 document.head.appendChild(markdownIt)
 
 
@@ -122,43 +122,43 @@ const parseBlocks = (data) => {
 
 
 const showRelativeDate = (date) => {
-	const diff = Math.round((new Date() - new Date(date)) / 1000);
+	const diff = Math.round((new Date() - new Date(date)) / 1000)
 
-	const minute = 60;
-	const hour = minute * 60;
-	const day = hour * 24;
-	const week = day * 7;
-	const month = day * 30;
-	const year = month * 12;
+	const minute = 60
+	const hour = minute * 60
+	const day = hour * 24
+	const week = day * 7
+	const month = day * 30
+	const year = month * 12
 
 	if (diff < 30) {
-		return "just now";
+		return "just now"
 	} else if (diff < minute) {
-		return diff + " seconds ago";
+		return diff + " seconds ago"
 	} else if (diff < 2 * minute) {
-		return "a minute ago";
+		return "a minute ago"
 	} else if (diff < hour) {
-		return Math.floor(diff / minute) + " minutes ago";
+		return Math.floor(diff / minute) + " minutes ago"
 	} else if (Math.floor(diff / hour) == 1) {
-		return "an hour ago";
+		return "an hour ago"
 	} else if (diff < day) {
-		return Math.floor(diff / hour) + " hours ago";
+		return Math.floor(diff / hour) + " hours ago"
 	} else if (diff < day * 2) {
-		return "yesterday";
+		return "yesterday"
 	} else if (diff < week) {
-		return Math.floor(diff / day) + " days ago";
+		return Math.floor(diff / day) + " days ago"
 	} else if (Math.floor(diff / week) == 1) {
-		return "a week ago";
+		return "a week ago"
 	} else if (diff < month) {
-		return Math.floor(diff / week) + " weeks ago";
+		return Math.floor(diff / week) + " weeks ago"
 	} else if (Math.floor(diff / month) == 1) {
-		return "a month ago";
+		return "a month ago"
 	} else if (diff < year) {
-		return Math.floor(diff / month) + " months ago";
+		return Math.floor(diff / month) + " months ago"
 	} else if (Math.floor(diff / year) == 1) {
-		return "a year ago";
+		return "a year ago"
 	} else {
-		return Math.floor(diff / year) + " years ago";
+		return Math.floor(diff / year) + " years ago"
 	}
 }
 
