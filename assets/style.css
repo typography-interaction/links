@@ -6,8 +6,6 @@ a { color: blue; }
 em { font-style: italic; }
 strong { font-weight: bold; }
 
-section { max-width: 40em; }
-
 body,
 section,
 ul,

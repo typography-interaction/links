@@ -50,7 +50,12 @@
 			<li>
 				<figure class="audio-embed"> <!-- You can use the container classes to style a whole type. -->
 					<h3 class="title"></h3> <!-- Block title inserts here. -->
-					<img class="image"> <!-- Image/cover image source inserts here. -->
+					<picture>
+						<source class="image-thumb"> <!-- You will have to add the `media` if you want to use these. -->
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image"> <!-- Largest image/cover source inserts here. -->
+					</picture>
 					<div class="embed"></div> <!-- Embed iframe inserts here. -->
 					<a class="link"> <!-- Original URL inserts here. -->
 						<p class="link-title"></p> <!-- Link title inserts here. -->
@@ -65,7 +70,12 @@
 			<li>
 				<figure class="audio-file-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<audio class="audio" controls></audio> <!-- Audio source inserts here. -->
 					<figcaption class="description"></figcaption>
 					<p class="type"></p>
@@ -77,7 +87,12 @@
 			<li>
 				<figure class="image-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<a class="link">
 						<p class="link-title"></p>
 					</a>
@@ -91,7 +106,12 @@
 			<li>
 				<figure class="link-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<a class="link">
 						<p class="link-title"></p>
 					</a>
@@ -105,7 +125,12 @@
 			<li>
 				<figure class="pdf-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<a class="link"> <!-- PDF link inserts here. -->
 						<p class="link-title"></p> <!-- Repeats the block title. -->
 					</a>
@@ -130,7 +155,12 @@
 			<li>
 				<figure class="video-embed-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<div class="embed"></div>
 					<a class="link">
 						<p class="link-title"></p>
@@ -145,7 +175,12 @@
 			<li>
 				<figure class="video-file-block">
 					<h3 class="title"></h3>
-					<img class="image">
+					<picture>
+						<source class="image-thumb">
+						<source class="image-square">
+						<source class="image-display">
+						<img class="image">
+					</picture>
 					<video class="video" controls></video> <!-- Video source inserts here. -->
 					<figcaption class="description"></figcaption>
 					<p class="type"></p>
