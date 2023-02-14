@@ -132,19 +132,19 @@ const showRelativeDate = (date) => {
 	const year =   month * 12
 
 	if      (elapsed < 30)                     return `just now`
-	else if (elapsed < minute)                 return `${elapsed} seconds ago`
-	else if (elapsed < minute * 2)             return `a minute ago`
-	else if (elapsed < hour)                   return `${Math.floor(elapsed / minute)} minutes ago`
-	else if (Math.floor(elapsed / hour) == 1)  return `an hour ago`
-	else if (elapsed < day)                    return `${Math.floor(elapsed / hour)} hours ago`
-	else if (elapsed < day * 2)                return `yesterday`
-	else if (elapsed < week)                   return `${Math.floor(elapsed / day)} days ago`
-	else if (Math.floor(elapsed / week) == 1)  return `a week ago`
-	else if (elapsed < month)                  return `${Math.floor(elapsed / week)} weeks ago`
-	else if (Math.floor(elapsed / month) == 1) return `a month ago`
-	else if (elapsed < year)                   return `${Math.floor(elapsed / month)} months ago`
-	else if (Math.floor(elapsed / year) == 1)  return `a year ago`
-	else                                       return `${Math.floor(elapsed / year)} years ago`
+	else if (elapsed < minute)                 return `${elapsed} seconds ago`
+	else if (elapsed < minute * 2)             return `a minute ago`
+	else if (elapsed < hour)                   return `${Math.floor(elapsed / minute)} minutes ago`
+	else if (Math.floor(elapsed / hour) == 1)  return `an hour ago`
+	else if (elapsed < day)                    return `${Math.floor(elapsed / hour)} hours ago`
+	else if (elapsed < day * 2)                return `a day ago`
+	else if (elapsed < week)                   return `${Math.floor(elapsed / day)} days ago`
+	else if (Math.floor(elapsed / week) == 1)  return `a week ago`
+	else if (elapsed < month)                  return `${Math.floor(elapsed / week)} weeks ago`
+	else if (Math.floor(elapsed / month) == 1) return `a month ago`
+	else if (elapsed < year)                   return `${Math.floor(elapsed / month)} months ago`
+	else if (Math.floor(elapsed / year) == 1)  return `a year ago`
+	else                                       return `${Math.floor(elapsed / year)} years ago`
 }
 
 
