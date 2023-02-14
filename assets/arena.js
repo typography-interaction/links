@@ -121,6 +121,49 @@ const parseBlocks = (data) => {
 
 
 
+const showRelativeDate = (date) => {
+	const diff = Math.round((new Date() - new Date(date)) / 1000);
+
+	const minute = 60;
+	const hour = minute * 60;
+	const day = hour * 24;
+	const week = day * 7;
+	const month = day * 30;
+	const year = month * 12;
+
+	if (diff < 30) {
+		return "just now";
+	} else if (diff < minute) {
+		return diff + " seconds ago";
+	} else if (diff < 2 * minute) {
+		return "a minute ago";
+	} else if (diff < hour) {
+		return Math.floor(diff / minute) + " minutes ago";
+	} else if (Math.floor(diff / hour) == 1) {
+		return "an hour ago";
+	} else if (diff < day) {
+		return Math.floor(diff / hour) + " hours ago";
+	} else if (diff < day * 2) {
+		return "yesterday";
+	} else if (diff < week) {
+		return Math.floor(diff / day) + " days ago";
+	} else if (Math.floor(diff / week) == 1) {
+		return "a week ago";
+	} else if (diff < month) {
+		return Math.floor(diff / week) + " weeks ago";
+	} else if (Math.floor(diff / month) == 1) {
+		return "a month ago";
+	} else if (diff < year) {
+		return Math.floor(diff / month) + " months ago";
+	} else if (Math.floor(diff / year) == 1) {
+		return "a year ago";
+	} else {
+		return Math.floor(diff / year) + " years ago";
+	}
+}
+
+
+
 const renderBlock = (block, type) => {
 	if (!type.template || !type.container) return
 
@@ -139,6 +182,8 @@ const renderBlock = (block, type) => {
 		'content',
 		'description',
 		'type',
+		'timeUpdated',
+		'timeCreated',
 	]
 
 	element = Object.assign({},
@@ -172,6 +217,9 @@ const renderBlock = (block, type) => {
 	if (element.content) block.content_html ? element.content.innerHTML = block.content_html : element.content.remove()
 	if (element.description) block.description_html ? element.description.innerHTML = block.description_html : element.description.remove()
 	if (element.type) element.type.innerHTML = type.name
+	// if (element.timeCreated) element.timeCreated.innerHTML = block.created_at
+	if (element.timeUpdated) element.timeUpdated.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`
+	if (element.timeCreated) element.timeCreated.innerHTML = `Created ${showRelativeDate(block.created_at)}`
 
 	type.container.append(template)
 }
