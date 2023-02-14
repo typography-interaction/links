@@ -10,9 +10,11 @@ const setBasics = (data) => {
 
 	const channelTitle = document.getElementById('channel-title')
 	const channelDescription = document.getElementById('channel-description')
+	const channelCount = document.getElementById('channel-count')
 
 	if (channelTitle) channelTitle.innerHTML = data.title
 	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
+	if (channelCount) channelCount.innerHTML = data.length
 
 	// Add author/collaborators with image/links.
 	// Error proof these.
