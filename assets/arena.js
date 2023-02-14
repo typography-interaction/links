@@ -122,48 +122,29 @@ const parseBlocks = (data) => {
 
 
 const showRelativeDate = (date) => {
-	const diff = Math.round((new Date() - new Date(date)) / 1000)
+	const elapsed = Math.round((new Date() - new Date(date)) / 1000)
 
 	const minute = 60
-	const hour = minute * 60
-	const day = hour * 24
-	const week = day * 7
-	const month = day * 30
-	const year = month * 12
+	const hour =   minute * 60
+	const day =    hour * 24
+	const week =   day * 7
+	const month =  day * 30
+	const year =   month * 12
 
-	let relativeDate
-
-	if (diff < 30) {
-		relativeDate = `just now`
-	} else if (diff < minute) {
-		relativeDate = `${diff} seconds ago`
-	} else if (diff < 2 * minute) {
-		relativeDate = `a minute ago`
-	} else if (diff < hour) {
-		relativeDate = `${Math.floor(diff / minute)} minutes ago`
-	} else if (Math.floor(diff / hour) == 1) {
-		relativeDate = `an hour ago`
-	} else if (diff < day) {
-		relativeDate = `${Math.floor(diff / hour)} hours ago`
-	} else if (diff < day * 2) {
-		relativeDate = `yesterday`
-	} else if (diff < week) {
-		relativeDate = `${Math.floor(diff / day)} days ago`
-	} else if (Math.floor(diff / week) == 1) {
-		relativeDate = `a week ago`
-	} else if (diff < month) {
-		relativeDate = `${Math.floor(diff / week)} weeks ago`
-	} else if (Math.floor(diff / month) == 1) {
-		relativeDate = `a month ago`
-	} else if (diff < year) {
-		relativeDate = `${Math.floor(diff / month)} months ago`
-	} else if (Math.floor(diff / year) == 1) {
-		relativeDate = `a year ago`
-	} else {
-		relativeDate = `${Math.floor(diff / year)} years ago`
-	}
-
-	return relativeDate
+	if      (elapsed < 30)                     return `just now`
+	else if (elapsed < minute)                 return `${elapsed} seconds ago`
+	else if (elapsed < minute * 2)             return `a minute ago`
+	else if (elapsed < hour)                   return `${Math.floor(elapsed / minute)} minutes ago`
+	else if (Math.floor(elapsed / hour) == 1)  return `an hour ago`
+	else if (elapsed < day)                    return `${Math.floor(elapsed / hour)} hours ago`
+	else if (elapsed < day * 2)                return `yesterday`
+	else if (elapsed < week)                   return `${Math.floor(elapsed / day)} days ago`
+	else if (Math.floor(elapsed / week) == 1)  return `a week ago`
+	else if (elapsed < month)                  return `${Math.floor(elapsed / week)} weeks ago`
+	else if (Math.floor(elapsed / month) == 1) return `a month ago`
+	else if (elapsed < year)                   return `${Math.floor(elapsed / month)} months ago`
+	else if (Math.floor(elapsed / year) == 1)  return `a year ago`
+	else                                       return `${Math.floor(elapsed / year)} years ago`
 }
 
 
