@@ -11,6 +11,7 @@ const setBasics = (data) => {
 	const channelTitle = document.getElementById('channel-title')
 	const channelDescription = document.getElementById('channel-description')
 	const channelCount = document.getElementById('channel-count')
+	const channelOwner = document.querySelector('.channel-owner')
 
 	if (channelTitle) channelTitle.innerHTML = data.title
 	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
@@ -18,6 +19,31 @@ const setBasics = (data) => {
 
 	// Add author/collaborators with image/links.
 	// Error proof these.
+
+	const renderUser = (user, container, template) => {
+		template = document.getElementById(template).content.cloneNode(true)
+
+		let element = [
+			'avatar',
+			'fullName',
+			'link',
+		]
+
+		// This could be a function, with the one below.
+		element = Object.assign({},
+			...element.map(string => ({
+				[string]: template.querySelector(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
+			}))
+		)
+
+		if (element.avatar) user.avatar_image.display ? element.avatar.src = user.avatar_image.display : element.avatar.remove()
+		if (element.fullName) user.full_name ? element.fullName.innerHTML = user.full_name : element.fullName.remove()
+		if (element.link) user.slug ? element.link.href = `https://www.are.na/${user.slug}` : element.link.remove()
+
+    container.append(template)
+	}
+
+	if (channelOwner) renderUser(data.owner, channelOwner, 'channel-owner')
 }
 
 
@@ -109,8 +135,8 @@ const renderBlock = (block, type) => {
 	]
 
 	element = Object.assign({},
-		...element.map(type => ({
-			[type]: template.querySelector(`.${type.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
+		...element.map(string => ({
+			[string]: template.querySelector(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
 		}))
 	)
 
