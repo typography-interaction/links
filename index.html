@@ -14,7 +14,7 @@
 				<h1 id="channel-title"></h1> <!-- The channel title will be inserted inside this h1. -->
 			</a>
 			<div id="channel-description"></div> <!-- Same here for the channel description. -->
-			<ul class="channel-owner"></ul> <!-- Owner and collaborators. -->
+			<ul class="channel-owner channel-collaborator"></ul> <!-- Owner and collaborators. -->
 		</section>
 		<section>
 			<h2><span id="channel-count"></span> blocks</h2>
@@ -27,12 +27,21 @@
 		<!-- You can move/nest/remove any of the insertion points! -->
 		<!-- For example, you could only show images for actual image blocks. -->
 		<!-- You could not show the type if you group them by section, above. -->
-		<!-- The owner. -->
+		<!-- Template for the channel owner. -->
 		<template id="channel-owner">
 			<li>
+				<img class="avatar"> <!-- Avatar image source inserts here. -->
 				<a class="link"> <!-- Link to their profile inserts here. -->
-					<img class="avatar"> <!-- Avatar image source inserts here. -->
 					<p class="full-name"></p> <!-- Username inserts here. -->
+				</a>
+			</li>
+		</template>
+		<!-- And collaborator. -->
+		<template id="channel-collaborator">
+			<li>
+				<img class="avatar">
+				<a class="link">
+					<p class="full-name"></p>
 				</a>
 			</li>
 		</template>

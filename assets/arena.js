@@ -11,17 +11,19 @@ const setBasics = (data) => {
 	const channelTitle = document.getElementById('channel-title')
 	const channelDescription = document.getElementById('channel-description')
 	const channelCount = document.getElementById('channel-count')
-	const channelOwner = document.querySelector('.channel-owner')
 
 	if (channelTitle) channelTitle.innerHTML = data.title
 	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
 	if (channelCount) channelCount.innerHTML = data.length
 
-	// Add author/collaborators with image/links.
-	// Error proof these.
 
-	const renderUser = (user, container, template) => {
-		template = document.getElementById(template).content.cloneNode(true)
+	const renderUser = (user, id) => {
+		let container = document.querySelector(`.${id}`)
+		let template = document.getElementById(id)
+
+		if (!container || !template) return
+
+		template = template.content.cloneNode(true)
 
 		let element = [
 			'avatar',
@@ -43,7 +45,9 @@ const setBasics = (data) => {
     container.append(template)
 	}
 
-	if (channelOwner) renderUser(data.owner, channelOwner, 'channel-owner')
+	renderUser(data.owner, 'channel-owner')
+
+	data.collaborators.forEach((user) => renderUser(user, 'channel-collaborator'))
 }
 
 
