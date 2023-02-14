@@ -192,11 +192,13 @@ const renderBlock = (block, type) => {
 		}))
 	)
 
+	const srcOrSrcset = (element, size) => element.tagName == 'IMG' ? element.src = block.image[size].url : element.srcset = block.image[size].url
+
 	if (element.title) block.title ? element.title.innerHTML = block.title : element.title.remove()
-	if (element.imageThumb) block.image ? element.imageThumb.srcset = block.image.thumb.url : element.imageThumb.remove()
-	if (element.imageSquare) block.image ? element.imageSquare.srcset = block.image.square.url : element.imageSquare.remove()
-	if (element.imageDisplay) block.image ? element.imageDisplay.srcset = block.image.display.url : element.imageDisplay.remove()
-	if (element.image) block.image ? element.image.src = block.image.large.url : element.image.remove()
+	if (element.imageThumb) block.image ? srcOrSrcset(element.imageThumb, 'thumb') : element.imageThumb.remove()
+	if (element.imageSquare) block.image ? srcOrSrcset(element.imageSquare, 'square') : element.imageSquare.remove()
+	if (element.imageDisplay) block.image ? srcOrSrcset(element.imageDisplay, 'display') : element.imageDisplay.remove()
+	if (element.image) block.image ? srcOrSrcset(element.image, 'large') : element.image.remove()
 	if (element.embed) block.embed ? element.embed.innerHTML = block.embed.html : element.embed.remove()
 	if (element.audio) block.attachment ? element.audio.src = block.attachment.url : element.audio.remove()
 	if (element.video) block.attachment ? element.video.src = block.attachment.url : element.video.remove()
