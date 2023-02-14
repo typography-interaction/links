@@ -14,7 +14,7 @@ const setBasics = (data) => {
 
 	if (channelTitle) channelTitle.innerHTML = data.title
 	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
-	if (channelCount) channelCount.innerHTML = data.length
+	if (channelCount) channelCount.innerHTML = `${data.length} blocks`
 
 
 	const renderUser = (user, id) => {
