@@ -131,35 +131,39 @@ const showRelativeDate = (date) => {
 	const month = day * 30
 	const year = month * 12
 
+	let relativeDate
+
 	if (diff < 30) {
-		return "just now"
+		relativeDate = `just now`
 	} else if (diff < minute) {
-		return diff + " seconds ago"
+		relativeDate = `${diff} seconds ago`
 	} else if (diff < 2 * minute) {
-		return "a minute ago"
+		relativeDate = `a minute ago`
 	} else if (diff < hour) {
-		return Math.floor(diff / minute) + " minutes ago"
+		relativeDate = `${Math.floor(diff / minute)} minutes ago`
 	} else if (Math.floor(diff / hour) == 1) {
-		return "an hour ago"
+		relativeDate = `an hour ago`
 	} else if (diff < day) {
-		return Math.floor(diff / hour) + " hours ago"
+		relativeDate = `${Math.floor(diff / hour)} hours ago`
 	} else if (diff < day * 2) {
-		return "yesterday"
+		relativeDate = `yesterday`
 	} else if (diff < week) {
-		return Math.floor(diff / day) + " days ago"
+		relativeDate = `${Math.floor(diff / day)} days ago`
 	} else if (Math.floor(diff / week) == 1) {
-		return "a week ago"
+		relativeDate = `a week ago`
 	} else if (diff < month) {
-		return Math.floor(diff / week) + " weeks ago"
+		relativeDate = `${Math.floor(diff / week)} weeks ago`
 	} else if (Math.floor(diff / month) == 1) {
-		return "a month ago"
+		relativeDate = `a month ago`
 	} else if (diff < year) {
-		return Math.floor(diff / month) + " months ago"
+		relativeDate = `${Math.floor(diff / month)} months ago`
 	} else if (Math.floor(diff / year) == 1) {
-		return "a year ago"
+		relativeDate = `a year ago`
 	} else {
-		return Math.floor(diff / year) + " years ago"
+		relativeDate = `${Math.floor(diff / year)} years ago`
 	}
+
+	return relativeDate
 }
 
 
@@ -219,7 +223,6 @@ const renderBlock = (block, type) => {
 	if (element.content) block.content_html ? element.content.innerHTML = block.content_html : element.content.remove()
 	if (element.description) block.description_html ? element.description.innerHTML = block.description_html : element.description.remove()
 	if (element.type) element.type.innerHTML = type.name
-	// if (element.timeCreated) element.timeCreated.innerHTML = block.created_at
 	if (element.timeUpdated) element.timeUpdated.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`
 	if (element.timeCreated) element.timeCreated.innerHTML = `Created ${showRelativeDate(block.created_at)}`
 
