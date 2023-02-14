@@ -38,7 +38,7 @@ const setBasics = (data) => {
 			}))
 		)
 
-		if (element.avatar) user.avatar_image.display ? element.avatar.src = user.avatar_image.display : element.avatar.remove()
+		if (element.avatar) user.avatar_image.display ? element.avatar.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.avatar.remove()
 		if (element.fullName) user.full_name ? element.fullName.innerHTML = user.full_name : element.fullName.remove()
 		if (element.link) user.slug ? element.link.href = `https://www.are.na/${user.slug}` : element.link.remove()
 
