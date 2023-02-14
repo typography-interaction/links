@@ -7,8 +7,12 @@ document.head.appendChild(markdownIt)
 
 const setBasics = (data) => {
 	document.title = data.title
-	document.getElementById('channel-title').innerHTML = data.title
-	document.getElementById('channel-description').innerHTML = window.markdownit().render(data.metadata.description)
+
+	const channelTitle = document.getElementById('channel-title')
+	const channelDescription = document.getElementById('channel-description')
+
+	if (channelTitle) channelTitle.innerHTML = data.title
+	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
 
 	// Add author/collaborators with image/links.
 	// Error proof these.
