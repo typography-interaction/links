@@ -212,13 +212,12 @@ const renderBlock = (block, type) => {
 
 
 
-window.addEventListener('DOMContentLoaded', () => {
-	const channel = document.getElementById('channel-url').href.split('/').filter(Boolean).pop()
+const channel = document.getElementById('channel-url').href.split('/').filter(Boolean).pop()
 
-	fetch(`https://api.are.na/v2/channels/${channel}?per=100`, {cache: 'no-store'})
-		.then(response => response.json())
-		.then(data => {
-			setBasics(data)
-			parseBlocks(data)
-		})
-});
+fetch(`https://api.are.na/v2/channels/${channel}?per=100`, {cache: 'no-store'})
+	.then(response => response.json())
+	.then(data => {
+		setBasics(data)
+		parseBlocks(data)
+	})
+
