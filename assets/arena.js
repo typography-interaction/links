@@ -25,22 +25,22 @@ const setBasics = (data) => {
 
 		template = template.content.cloneNode(true)
 
-		let element = [
+		let elements = [
 			'avatar',
 			'fullName',
 			'link',
 		]
 
 		// This could be a function, with the one below.
-		element = Object.assign({},
-			...element.map(string => ({
+		elements = Object.assign({},
+			...elements.map(string => ({
 				[string]: template.querySelectorAll(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
 			}))
 		)
 
-		element.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
-		element.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
-		element.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
+		elements.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
+		elements.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
+		elements.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
 
 		container.append(template)
 	}
@@ -153,7 +153,7 @@ const renderBlock = (block, type) => {
 	if (!type.template || !type.container) return
 
 	let template = type.template.cloneNode(true)
-	let element = [
+	let elements = [
 		'title',
 		'imageThumb',
 		'imageSquare',
@@ -171,40 +171,40 @@ const renderBlock = (block, type) => {
 		'timeCreated',
 	]
 
-	element = Object.assign({},
-		...element.map(string => ({
+	elements = Object.assign({},
+		...elements.map(string => ({
 			[string]: template.querySelectorAll(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
 		}))
 	)
 
 	const srcOrSrcset = (element, size) => element.tagName == 'IMG' ? element.src = block.image[size].url : element.srcset = block.image[size].url
 
-	element.title.forEach((element) => block.title ? element.innerHTML = block.title : element.remove())
-	element.imageThumb.forEach((element) => block.image ? srcOrSrcset(element, 'thumb') : element.remove())
-	element.imageSquare.forEach((element) => block.image ? srcOrSrcset(element, 'square') : element.remove())
-	element.imageDisplay.forEach((element) => block.image ? srcOrSrcset(element, 'display') : element.remove())
-	element.image.forEach((element) => block.image ? srcOrSrcset(element, 'large') : element.remove())
-	element.embed.forEach((element) => block.embed ? element.innerHTML = block.embed.html : element.remove())
-	element.audio.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
-	element.video.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
-	element.link.forEach((link) => {
+	elements.title.forEach((element) => block.title ? element.innerHTML = block.title : element.remove())
+	elements.imageThumb.forEach((element) => block.image ? srcOrSrcset(element, 'thumb') : element.remove())
+	elements.imageSquare.forEach((element) => block.image ? srcOrSrcset(element, 'square') : element.remove())
+	elements.imageDisplay.forEach((element) => block.image ? srcOrSrcset(element, 'display') : element.remove())
+	elements.image.forEach((element) => block.image ? srcOrSrcset(element, 'large') : element.remove())
+	elements.embed.forEach((element) => block.embed ? element.innerHTML = block.embed.html : element.remove())
+	elements.audio.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
+	elements.video.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
+	elements.link.forEach((element) => {
 		if (block.source) {
-			link.href = block.source.url
-			if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.source.title)
+			element.href = block.source.url
+			elements.linkTitle.forEach((element) => element.innerHTML = block.source.title)
 		}
 		else if (block.attachment) {
-			link.href = block.attachment.url
-			if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.title)
+			element.href = block.attachment.url
+			elements.linkTitle.forEach((element) => element.innerHTML = block.title)
 		}
 		else {
-			link.remove()
+			element.remove()
 		}
 	})
-	element.content.forEach((element) => block.content_html ? element.innerHTML = block.content_html : element.remove())
-	element.description.forEach((element) => block.description_html ? element.innerHTML = block.description_html : element.remove())
-	element.type.forEach((element) => element.innerHTML = type.name)
-	element.timeUpdated.forEach((element) => element.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`)
-	element.timeCreated.forEach((element) => element.innerHTML = `Created ${showRelativeDate(block.created_at)}`)
+	elements.content.forEach((element) => block.content_html ? element.innerHTML = block.content_html : element.remove())
+	elements.description.forEach((element) => block.description_html ? element.innerHTML = block.description_html : element.remove())
+	elements.type.forEach((element) => element.innerHTML = type.name)
+	elements.timeUpdated.forEach((element) => element.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`)
+	elements.timeCreated.forEach((element) => element.innerHTML = `Created ${showRelativeDate(block.created_at)}`)
 
 	type.container.append(template)
 }
