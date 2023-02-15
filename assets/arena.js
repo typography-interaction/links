@@ -17,31 +17,34 @@ const setBasics = (data) => {
 	channelCount.forEach((element) => element.innerHTML = `${data.length} blocks`)
 
 	const renderUser = (user, id) => {
-		let container = document.querySelector(`.${id}`)
-		let template = document.getElementById(id)
+		let containers = document.querySelectorAll(`.${id}`)
 
-		if (!container || !template) return
+		containers.forEach((container) => {
+			let template = document.getElementById(id)
 
-		template = template.content.cloneNode(true)
+			if (!container || !template) return
 
-		let elements = [
-			'avatar',
-			'fullName',
-			'link',
-		]
+			template = template.content.cloneNode(true)
 
-		// This could be a function, with the one below.
-		elements = Object.assign({},
-			...elements.map(string => ({
-				[string]: template.querySelectorAll(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
-			}))
-		)
+			let elements = [
+				'avatar',
+				'fullName',
+				'link',
+			]
 
-		elements.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
-		elements.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
-		elements.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
+			// This could be a function, with the one below.
+			elements = Object.assign({},
+				...elements.map(string => ({
+					[string]: template.querySelectorAll(`.${string.replace(/[A-Z]/g, "-$&").toLowerCase()}`)
+				}))
+			)
 
-		container.append(template)
+			elements.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
+			elements.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
+			elements.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
+
+			container.appendChild(template)
+		})
 	}
 
 	renderUser(data.owner, 'channel-owner')
