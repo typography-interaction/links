@@ -38,11 +38,11 @@ const setBasics = (data) => {
 			}))
 		)
 
-		if (element.avatar) element.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
-		if (element.fullName) element.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
-		if (element.link) element.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
+		element.avatar.forEach((element) => user.avatar_image.display ? element.src = user.avatar_image.display.replace('/medium_', '/large_').replace('&s=150', '&s=400') : element.remove())
+		element.fullName.forEach((element) => user.full_name ? element.innerHTML = user.full_name : element.remove())
+		element.link.forEach((element) => user.slug ? element.href = `https://www.are.na/${user.slug}` : element.remove())
 
-    container.append(template)
+		container.append(template)
 	}
 
 	renderUser(data.owner, 'channel-owner')
@@ -179,36 +179,32 @@ const renderBlock = (block, type) => {
 
 	const srcOrSrcset = (element, size) => element.tagName == 'IMG' ? element.src = block.image[size].url : element.srcset = block.image[size].url
 
-	if (element.title) element.title.forEach((element) => block.title ? element.innerHTML = block.title : element.remove())
-	if (element.imageThumb) element.imageThumb.forEach((element) => block.image ? srcOrSrcset(element, 'thumb') : element.remove())
-	if (element.imageSquare) element.imageSquare.forEach((element) => block.image ? srcOrSrcset(element, 'square') : element.remove())
-	if (element.imageDisplay) element.imageDisplay.forEach((element) => block.image ? srcOrSrcset(element, 'display') : element.remove())
-	if (element.image) element.image.forEach((element) => block.image ? srcOrSrcset(element, 'large') : element.remove())
-	if (element.embed) element.embed.forEach((element) => block.embed ? element.innerHTML = block.embed.html : element.remove())
-	if (element.audio) element.audio.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
-	if (element.video) element.video.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
-
-	if (element.link) {
-		element.link.forEach((link) => {
-			if (block.source) {
-				link.href = block.source.url
-				if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.source.title)
-			}
-			else if (block.attachment) {
-				link.href = block.attachment.url
-				if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.title)
-			}
-			else {
-				link.remove()
-			}
-		})
-	}
-
-	if (element.content) element.content.forEach((element) => block.content_html ? element.innerHTML = block.content_html : element.remove())
-	if (element.description) element.description.forEach((element) => block.description_html ? element.innerHTML = block.description_html : element.remove())
-	if (element.type) element.type.forEach((element) => element.innerHTML = type.name)
-	if (element.timeUpdated) element.timeUpdated.forEach((element) => element.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`)
-	if (element.timeCreated) element.timeCreated.forEach((element) => element.innerHTML = `Created ${showRelativeDate(block.created_at)}`)
+	element.title.forEach((element) => block.title ? element.innerHTML = block.title : element.remove())
+	element.imageThumb.forEach((element) => block.image ? srcOrSrcset(element, 'thumb') : element.remove())
+	element.imageSquare.forEach((element) => block.image ? srcOrSrcset(element, 'square') : element.remove())
+	element.imageDisplay.forEach((element) => block.image ? srcOrSrcset(element, 'display') : element.remove())
+	element.image.forEach((element) => block.image ? srcOrSrcset(element, 'large') : element.remove())
+	element.embed.forEach((element) => block.embed ? element.innerHTML = block.embed.html : element.remove())
+	element.audio.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
+	element.video.forEach((element) => block.attachment ? element.src = block.attachment.url : element.remove())
+	element.link.forEach((link) => {
+		if (block.source) {
+			link.href = block.source.url
+			if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.source.title)
+		}
+		else if (block.attachment) {
+			link.href = block.attachment.url
+			if (element.linkTitle) element.linkTitle.forEach((element) => element.innerHTML = block.title)
+		}
+		else {
+			link.remove()
+		}
+	})
+	element.content.forEach((element) => block.content_html ? element.innerHTML = block.content_html : element.remove())
+	element.description.forEach((element) => block.description_html ? element.innerHTML = block.description_html : element.remove())
+	element.type.forEach((element) => element.innerHTML = type.name)
+	element.timeUpdated.forEach((element) => element.innerHTML = `Updated ${showRelativeDate(block.updated_at)}`)
+	element.timeCreated.forEach((element) => element.innerHTML = `Created ${showRelativeDate(block.created_at)}`)
 
 	type.container.append(template)
 }
