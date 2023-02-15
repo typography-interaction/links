@@ -8,9 +8,9 @@ document.head.appendChild(markdownIt)
 const setBasics = (data) => {
 	document.title = data.title
 
-	const channelTitle = document.getElementById('channel-title')
-	const channelDescription = document.getElementById('channel-description')
-	const channelCount = document.getElementById('channel-count')
+	const channelTitle = document.querySelector('.channel-title')
+	const channelDescription = document.querySelector('.channel-description')
+	const channelCount = document.querySelector('.channel-count')
 
 	if (channelTitle) channelTitle.innerHTML = data.title
 	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
