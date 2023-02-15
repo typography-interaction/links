@@ -8,14 +8,13 @@ document.head.appendChild(markdownIt)
 const setBasics = (data) => {
 	document.title = data.title
 
-	const channelTitle = document.querySelector('.channel-title')
-	const channelDescription = document.querySelector('.channel-description')
-	const channelCount = document.querySelector('.channel-count')
+	const channelTitle = document.querySelectorAll('.channel-title')
+	const channelDescription = document.querySelectorAll('.channel-description')
+	const channelCount = document.querySelectorAll('.channel-count')
 
-	if (channelTitle) channelTitle.innerHTML = data.title
-	if (channelDescription) channelDescription.innerHTML = window.markdownit().render(data.metadata.description)
-	if (channelCount) channelCount.innerHTML = `${data.length} blocks`
-
+	channelTitle.forEach((element) => element.innerHTML = data.title)
+	channelDescription.forEach((element) => element.innerHTML = window.markdownit().render(data.metadata.description))
+	channelCount.forEach((element) => element.innerHTML = `${data.length} blocks`)
 
 	const renderUser = (user, id) => {
 		let container = document.querySelector(`.${id}`)
