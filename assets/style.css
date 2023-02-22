@@ -18,6 +18,7 @@ header {
 	padding: var(--spacing);
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 main { padding-bottom: 33vh; }
