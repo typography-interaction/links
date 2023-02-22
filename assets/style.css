@@ -11,7 +11,10 @@ em { font-style: italic; }
 strong { font-weight: bold; }
 
 
-body { font-family: sans-serif; }
+body {
+	font-family: sans-serif;
+	background-color: #eee;
+}
 
 header {
 	background-color: white;
@@ -21,8 +24,6 @@ header {
 	z-index: 1;
 }
 
-main { padding-bottom: 33vh; }
-
 ul {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(calc(6 * var(--spacing)), 1fr));
@@ -30,15 +31,16 @@ ul {
 
 li {
 	aspect-ratio: 1;
-	display: flex;
 	filter: saturate(0);
 	overflow: hidden;
 }
 
+figure,
 img {
 	height: 100%;
-	object-fit: cover;
 	width: 100%;
 }
+
+img { object-fit: cover; }
 
 .text-block .content { margin: calc(-1 * var(--spacing)); }
