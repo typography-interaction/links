@@ -40,3 +40,5 @@ img {
 	object-fit: cover;
 	width: 100%;
 }
+
+.text-block .content { margin: calc(-1 * var(--spacing)); }
