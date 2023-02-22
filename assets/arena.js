@@ -222,5 +222,6 @@ fetch(`https://api.are.na/v2/channels/${channel}?page=4&per=80`, {cache: 'no-sto
 	.then(data => {
 		setBasics(data)
 		parseBlocks(data)
+		window.arenaCallback?.()
 	})
 
