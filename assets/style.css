@@ -71,3 +71,7 @@ figure > img { object-fit: cover; }
 .image-block.active aside {
 	display: block;
 }
+
+.image-block aside > p {
+	color: white;
+}
