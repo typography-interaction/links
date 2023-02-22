@@ -1,11 +1,7 @@
-:root {
-	--spacing: 16px;
-}
+:root { --spacing: 16px; }
 
 @media (min-width: 768px) {
-	:root {
-		--spacing: 48px;
-	}
+	:root { --spacing: 32px; }
 }
 
 
@@ -28,5 +24,18 @@ main { padding-bottom: 33vh; }
 
 ul {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(calc(6 * var(--spacing)), 1fr));
+}
+
+li {
+	aspect-ratio: 1;
+	display: flex;
+	filter: saturate(0);
+	overflow: hidden;
+}
+
+img {
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
 }
