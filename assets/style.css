@@ -1,9 +1,32 @@
-body {
-	font-family: sans-serif;
-	padding: 2em;
+:root {
+	--spacing: 16px;
 }
+
+@media (min-width: 768px) {
+	:root {
+		--spacing: 48px;
+	}
+}
+
+
 
 a { color: blue; }
 em { font-style: italic; }
 strong { font-weight: bold; }
 
+
+body { font-family: sans-serif; }
+
+header {
+	background-color: white;
+	padding: var(--spacing);
+	position: sticky;
+	top: 0;
+}
+
+main { padding-bottom: 33vh; }
+
+ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
