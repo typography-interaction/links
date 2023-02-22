@@ -1,15 +1,9 @@
-/* These styles are just to make it easier to see the blocks, initially. */
-
-body { padding: 2em; }
+body {
+	font-family: sans-serif;
+	padding: 2em;
+}
 
 a { color: blue; }
 em { font-style: italic; }
 strong { font-weight: bold; }
 
-body,
-section,
-ul,
-figure {
-	display: grid;
-	gap: 1em;
-}
