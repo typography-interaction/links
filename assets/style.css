@@ -43,10 +43,31 @@ img {
 	width: 100%;
 }
 
-img { object-fit: cover; }
+figure > img { object-fit: cover; }
 
 .text-block .content {
 	display: grid;
 	gap: calc(var(--spacing) / 4);
 	padding: calc(var(--spacing) / 4);
+}
+
+
+.image-block aside {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0,0,0, 0.75);
+	z-index: 2;
+	padding: calc(var(--spacing) * 2);
+}
+
+.image-block aside > img {
+	object-fit: contain;
+}
+
+.image-block.active aside {
+	display: block;
 }
